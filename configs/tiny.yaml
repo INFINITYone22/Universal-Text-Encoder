@@ -1,0 +1,33 @@
+model:
+  type: transformer_encoder
+  precision: bf16
+  vocab_size: 512
+  max_sequence_length: 256
+  layers: 2
+  attention_heads: 4
+  hidden_dim: 128
+  feedforward_dim: 512
+  activation: gelu
+  dropout: 0.1
+  normalization: layernorm
+  positional_encoding: sinusoidal
+input_preprocessing:
+  space_handling: normalize_multiple_to_single
+output:
+  pooling: eos_token
+  embedding_dim: 128
+  compression: none
+training:
+  objective: [mlm]
+  batch_size: 32
+  learning_rate: 5.0e-4
+  optimizer: adamw
+  weight_decay: 0.01
+  scheduler: cosine
+  epochs: 1
+  gradient_clipping: 1.0
+  seed: 42
+inference:
+  output_format: safetensors
+  transfer_protocol: local
+

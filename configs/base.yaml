@@ -1,0 +1,33 @@
+model:
+  type: transformer_encoder
+  precision: fp8
+  vocab_size: 4096
+  max_sequence_length: 4096
+  layers: 32
+  attention_heads: 32
+  hidden_dim: 4096
+  feedforward_dim: 16384
+  activation: gelu
+  dropout: 0.1
+  normalization: layernorm
+  positional_encoding: sinusoidal
+input_preprocessing:
+  space_handling: normalize_multiple_to_single
+output:
+  pooling: eos_token
+  embedding_dim: 4096
+  compression: optional_pca
+training:
+  objective: [mlm, contrastive]
+  batch_size: 128
+  learning_rate: 3.0e-5
+  optimizer: adamw
+  weight_decay: 0.01
+  scheduler: cosine
+  epochs: 300
+  gradient_clipping: 1.0
+  seed: 1234
+inference:
+  output_format: safetensors
+  transfer_protocol: https_api
+
