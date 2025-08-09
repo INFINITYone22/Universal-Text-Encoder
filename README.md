@@ -1,5 +1,8 @@
 Universal Text Encoder (UTE)
 
+Copyright (c) 2025 ROHITH GARAPATI (GitHub: INFINITYone22)
+All rights reserved.
+
 Overview
 The Universal Text Encoder is a character-level Transformer encoder that produces 4,096‑dimensional embeddings for multimodal AI. It supports masked language modeling (MLM) pretraining, optional contrastive fine‑tuning, inference to SafeTensors, and FP8/FP4 precision simulation with optional CUDA kernels.
 
@@ -36,6 +39,9 @@ GPU and AMP
 
 Optional CUDA kernels for FP8/FP4
 - The project includes simple CUDA kernels for quantize/dequantize. They are JIT-built at first use if NVCC and MSVC Build Tools are available. Otherwise, Python fallbacks are used.
+- Alternatively, build the extension explicitly:
+  - cd ute
+  - python setup.py build_ext --inplace
 
 Contrastive fine‑tuning (synthetic visuals)
 - A quick demo runnable without external datasets. It generates deterministic synthetic visual targets from text hashes to validate the loss pipeline.
@@ -57,6 +63,7 @@ Full model config
 - See configs/base.yaml for the 32×4096 architecture matching the spec. This requires multi‑GPU and substantial VRAM. Use tiny.yaml to validate code paths.
 
 License
-- MIT
+- Copyright (c) 2025 ROHITH GARAPATI (GitHub: INFINITYone22)
+- See LICENSE for terms
 
 
